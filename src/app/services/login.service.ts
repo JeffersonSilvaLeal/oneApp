@@ -8,18 +8,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
-  private urlApi = environment.urlApi + 'login';
+  private urlApi = environment.urlApi;
   
   constructor(private http: HttpClient) {
     
    }
 
    logar(Usuario: Usuario){
-     this.http.post<String>(this.urlApi, Usuario).subscribe({
+     this.http.post<String>(this.urlApi + 'login', Usuario).subscribe({
 
       next: (res) => {
-        console.info(res);
-        alert('login realizado');
+        
+        var respJson = JSON.stringify(res);
+        var jwt = JSON.parse(respJson);
+        localStorage.setItem("Authorization", jwt.Authorization);
+       
+        
       },
 
       error: (error) => {
@@ -31,4 +35,25 @@ export class LoginService {
 
      });
    }
+
+   recuperarSenha(login: String) {
+
+      return this.http.post<String>(this.urlApi + 'recuperarSenha', login).subscribe({
+
+       next: (res) => {
+
+        var respJson = JSON.stringify(res);
+        var resposta = JSON.parse(respJson);
+
+        alert(resposta.msg);
+       },
+      error: (error) => {
+        var respJson = JSON.stringify(error);
+        var resposta = JSON.parse(respJson);
+        alert(resposta.msg);
+      }
+
+      });
+   }
+
 }

@@ -1,15 +1,18 @@
 <router-outlet>
-  <h3 style="margin-left: 40%; margin-top: 1%;">{{tituloLogin}}</h3>
-<form [formGroup]="loginForm" class="w-25 p-3 rounded" style="background-color: rgb(17, 18, 18); margin-left: 65%; margin-top: 15%;">
-  <div class="mb-3">
-    <label for="login" class="form-label text-white">login</label>
-    <input type="login" class="form-control" id="login" name="login" aria-describedby="loginHelp" formControlName="login">
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label text-white">Password</label>
-    <input type="password" class="form-control" id="password" name="password" formControlName="senha">
-  </div>
-  <button type="button" class="btn btn-outline-light" style="margin-right: 10px" (click)="fazerLogin()" [disabled]="!loginForm.valid">Entrar</button>
-  <button type="button" class="btn btn-outline-light">Recuperar</button>
-</form>
+  <h3 style="margin-left: 40%; margin-top: 1%">{{ tituloLogin }}</h3>
+  <form
+    [formGroup]="loginForm"
+    class="w-25 p-3 rounded"
+    style="background-color: rgb(17, 18, 18); margin-left: 65%; margin-top: 15%">
+    <div class="mb-3">
+      <label for="login" class="form-label text-white">login</label>
+      <input type="login" class="form-control" id="login" name="login" aria-describedby="loginHelp" formControlName="login"/>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label text-white">Password</label>
+      <input type="password" class="form-control" id="password" name="password" formControlName="senha"/>
+    </div>
+    <button type="button" class="btn btn-outline-light" style="margin-right: 10px" (click)="fazerLogin()" [disabled]="!loginForm.valid">Entrar</button>
+    <button type="button" class="btn btn-outline-light" (click)="recuperarSenha()">Recuperar</button>
+  </form>
 </router-outlet>
